@@ -3,465 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarwanAlgo - منصة برمجيات التداول الآلي</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    <title>MarwanAlgo - تداول بذكاء وآلية كاملة</title>
     <style>
-        :root {
-            --bg-dark: #0a0e17;
-            --bg-card: #121824;
-            --accent-green: #10b981;
-            --accent-gold: #f59e0b;
-            --accent-blue: #3b82f6;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #1f293d;
-        }
-
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
+            box-sizing: border-box;
         }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Container */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Header / Navbar */
         header {
-            background: rgba(18, 24, 36, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 15px 0;
-        }
-
-        .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 8%;
+            background-color: #1e293b;
+            border-bottom: 1px solid #334155;
         }
-
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .logo span {
-            color: var(--accent-green);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-green);
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--accent-green), #059669);
-            color: #fff;
-            padding: 10px 22px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--accent-green);
-            color: var(--accent-green);
-        }
-
-        .btn-outline:hover {
-            background: var(--accent-green);
-            color: #fff;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0 60px;
-            text-align: center;
-            background: radial-gradient(circle at center, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero h1 span {
-            color: var(--accent-green);
-        }
-
-        .hero p {
-            font-size: 20px;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 35px;
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        /* Live Trading Showcase (Mockup) */
-        .showcase {
-            margin-top: 50px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: #182234;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: right;
-            border-right: 4px solid var(--accent-green);
-        }
-
-        .stat-card h4 {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .stat-card .val {
-            font-size: 28px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .chart-placeholder {
-            height: 300px;
-            background: #182234;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            border: 1px dashed var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            font-weight: 700;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 12px;
-            transition: transform 0.3s;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-box i {
-            font-size: 40px;
-            color: var(--accent-green);
-            margin-bottom: 20px;
-        }
-
-        .feature-box h3 {
             font-size: 22px;
-            margin-bottom: 12px;
+            font-weight: bold;
+            color: #38bdf8;
         }
-
-        .feature-box p {
-            color: var(--text-muted);
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin: 0 15px;
             font-size: 15px;
+            transition: color 0.3s;
         }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 0;
-            background: #0d121d;
+        nav a:hover {
+            color: #38bdf8;
         }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 900px;
+        .cta-btn {
+            background-color: #22c55e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .cta-btn:hover {
+            background-color: #16a34a;
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            max-width: 800px;
             margin: 0 auto;
         }
-
-        .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .price-card.popular {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent-green);
-            color: #fff;
-            padding: 4px 15px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .price {
+        .hero h1 {
             font-size: 42px;
-            font-weight: 800;
-            margin: 20px 0;
             color: #fff;
+            margin-bottom: 20px;
         }
-
-        .price span {
+        .hero h1 span {
+            color: #38bdf8;
+        }
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background-color: #22c55e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
             font-size: 16px;
-            color: var(--text-muted);
+            font-weight: bold;
+            transition: background 0.3s;
         }
-
-        .price-features {
-            list-style: none;
-            margin: 25px 0;
-            text-align: right;
+        .btn-primary:hover {
+            background-color: #16a34a;
         }
-
-        .price-features li {
-            margin-bottom: 12px;
-            color: var(--text-muted);
+        .btn-secondary {
+            background-color: transparent;
+            color: #38bdf8;
+            border: 2px solid #38bdf8;
+            padding: 12px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
         }
-
-        .price-features li i {
-            color: var(--accent-green);
-            margin-left: 10px;
+        .btn-secondary:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
         }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0;
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 50px 8%;
+            flex-wrap: wrap;
+            background-color: #1e293b;
+        }
+        .feature-card {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            padding: 25px;
+            border-radius: 10px;
+            width: 250px;
             text-align: center;
-            color: var(--text-muted);
+        }
+        .feature-card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #94a3b8;
             font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- الهيدر أو القائمة العليا -->
     <header>
-        <div class="container nav-wrapper">
-            <a href="#" class="logo">Marwan<span>Algo</span></a>
-            <ul class="nav-links">
-                <li><a href="#home">الرئيسية</a></li>
-                <li><a href="#features">المميزات</a></li>
-                <li><a href="#results">النتائج الحية</a></li>
-                <li><a href="#pricing">الأسعار</a></li>
-            </ul>
-            <a href="#pricing" class="btn">اشترك الآن</a>
-        </div>
+        <div class="logo">MarwanAlgo</div>
+        <nav>
+            <a href="#">الرئيسية</a>
+            <a href="#">المميزات</a>
+            <a href="#">النتائج الحية</a>
+            <a href="#">الأسعار</a>
+        </nav>
+        <a href="dashboard.html" class="cta-btn">اشترك الآن</a>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>تداول بذكاء وآلية كاملة مع <span>MarwanAlgo</span></h1>
-            <p>بوت تداول احترافي يعمل على حسابك 24/7 بفرص تداول دقيقة ونظام حماية متطور لرأس المال.</p>
-            <div class="hero-btns">
-                <a href="#pricing" class="btn">احصل على البوت الآن</a>
-                <a href="#results" class="btn btn-outline"><i class="fa-solid fa-play"></i> شاهد البوت أثناء العمل</a>
-            </div>
-
-            <!-- Showcase / Live Trading Dashboard Preview -->
-            <div class="showcase" id="results">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <h4>إجمالي الأرباح</h4>
-                        <div class="val" style="color: var(--accent-green);">+38.5%</div>
-                    </div>
-                    <div class="stat-card">
-                        <h4>نسبة صفقات النجاح</h4>
-                        <div class="val">84.2%</div>
-                    </div>
-                    <div class="stat-card">
-                        <h4>الصفقات الرابحة</h4>
-                        <div class="val">142 صفقة</div>
-                    </div>
-                    <div class="stat-card">
-                        <h4>أقصى مخاطرة (Drawdown)</h4>
-                        <div class="val" style="color: var(--accent-gold);">3.1%</div>
-                    </div>
-                </div>
-
-                <div class="chart-placeholder">
-                    <div style="text-align: center;">
-                        <i class="fa-solid fa-chart-line" style="font-size: 50px; color: var(--accent-green); margin-bottom: 10px;"></i>
-                        <p style="font-weight: 700; color: #fff;">[ عرض الرسم البياني الحي لصفقات البوت واستراتيجية التداول ]</p>
-                    </div>
-                </div>
-            </div>
+    <!-- القسم الرئيسي الواجهة -->
+    <section class="hero">
+        <h1>تداول بذكاء وآلية كاملة مع <span>MarwanAlgo</span></h1>
+        <p>بوت تداول احترافي يعمل على حسابك 24/7 بفرص تداول دقيقة ونظام حماية متطور لرأس المال.</p>
+        <div class="hero-buttons">
+            <a href="dashboard.html" class="btn-primary">احصل على البوت الآن</a>
+            <a href="dashboard.html" class="btn-secondary">شاهد البوت أثناء العمل</a>
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>لماذا تختار بوت <span>MarwanAlgo</span>؟</h2>
-                <p>صُمم البوت ليوفر لك تجربة تداول آمنة وسهلة بدون الحاجة لمراقبة الشاشة طوال اليوم.</p>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-box">
-                    <i class="fa-solid fa-robot"></i>
-                    <h3>تداول أوتوماتيكي 100%</h3>
-                    <p>ينفذ البوت الصفقات تلقائياً بناءً على تحليل فني دقيق بدون أي تدخل بشري أو عواطف.</p>
-                </div>
-
-                <div class="feature-box">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h3>إدارة مخاطر صارمة</h3>
-                    <p>تحديد تلقائي للهدف (Take Profit) ووقف الخسارة (Stop Loss) لحماية حسابك في أوقات تقلب السوق.</p>
-                </div>
-
-                <div class="feature-box">
-                    <i class="fa-solid fa-key"></i>
-                    <h3>تفعيل آمن وخاص بك</h3>
-                    <p>ترخيص مخصص يربط البوت بحسابك فقط لضمان أعلى مستويات الأمان والجودة.</p>
-                </div>
-            </div>
+    <!-- قسم المميزات السريعة -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>نسبة نجاح عالية</h3>
+            <p>تحليلات دقيقة مبنية على خوارزميات متطورة لإدارة الصفقات.</p>
+        </div>
+        <div class="feature-card">
+            <h3>تشغيل تلقائي 24/7</h3>
+            <p>البوت يعمل نيابة عنك طوال اليوم دون تدخل بشري.</p>
+        </div>
+        <div class="feature-card">
+            <h3>حماية رأس المال</h3>
+            <p>أنظمة تحكم صارمة بمستويات المخاطرة لضمان أمان حسابك.</p>
         </div>
     </section>
-
-    <!-- Pricing -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>خطط الاشتراكات</h2>
-                <p>اختر الخطة المناسبة لك وابدأ التداول الآلي في دقائق</p>
-            </div>
-
-            <div class="pricing-grid">
-                <!-- Monthly Plan -->
-                <div class="price-card">
-                    <h3>الاشتراك الشهري</h3>
-                    <div class="price">$49 <span>/ شهرياً</span></div>
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> ترخيص تفعيل لبوت التداول</li>
-                        <li><i class="fa-solid fa-check"></i> ربط بحساب تداول واحد</li>
-                        <li><i class="fa-solid fa-check"></i> تحديثات مجانية طوال فترة الاشتراك</li>
-                        <li><i class="fa-solid fa-check"></i> دعم فني مخصص 24/7</li>
-                    </ul>
-                    <a href="#" class="btn btn-outline" style="width: 100%;">اشترك الآن</a>
-                </div>
-
-                <!-- Annual Plan -->
-                <div class="price-card popular">
-                    <div class="badge">الأكثر طلباً</div>
-                    <h3>الاشتراك السنوي</h3>
-                    <div class="price">$399 <span>/ سنوياً</span></div>
-                    <ul class="price-features">
-                        <li><i class="fa-solid fa-check"></i> ترخيص تفعيل لبوت التداول</li>
-                        <li><i class="fa-solid fa-check"></i> ربط بحسابين تداول</li>
-                        <li><i class="fa-solid fa-check"></i> توفير أكثر من 30% من قيمة الاشتراك</li>
-                        <li><i class="fa-solid fa-check"></i> إعداد وتهيئة مجانية من الفريق</li>
-                    </ul>
-                    <a href="#" class="btn" style="width: 100%;">اشترك الآن</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>جميع الحقوق محفوظة © 2026 - منصة <strong>MarwanAlgo</strong> لتطوير برمجيات التداول</p>
-        </div>
-    </footer>
 
 </body>
 </html>
