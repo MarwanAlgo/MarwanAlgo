@@ -3,66 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarwanAlgo | الوسيط الاحترافي للتداول الآلي</title>
+    <title>MarwanAlgo | لوحة التحكم الاحترافية</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: linear-gradient(135deg, #090d16, #111827, #1e1b4b); 
-            background-attachment: fixed;
+            background: #0b0f19; 
             color: #fff; margin: 0; padding: 0; 
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
         }
-        .container { width: 100%; max-width: 480px; padding: 20px; box-sizing: border-box; }
+        .container { width: 100%; max-width: 500px; padding: 20px; box-sizing: border-box; }
         .page { display: none; }
         .active { display: block; animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .card { 
-            background: rgba(30, 41, 59, 0.85); 
-            backdrop-filter: blur(16px); 
-            padding: 30px; 
-            border-radius: 24px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            background: #111827; 
+            padding: 25px; 
+            border-radius: 20px; 
+            border: 1px solid #1f2937; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             text-align: center;
+            margin-bottom: 20px;
         }
         input { 
             width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; 
-            border: 1px solid #475569; background: rgba(15, 23, 42, 0.9); color: #fff; 
+            border: 1px solid #374151; background: #0b0f19; color: #fff; 
             box-sizing: border-box; font-size: 15px; outline: none; transition: 0.3s;
         }
-        input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        input:focus { border-color: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.3); }
         
         .btn { 
-            background: linear-gradient(135deg, #38bdf8, #2563eb); color: #fff; 
+            background: #2563eb; color: #fff; 
             padding: 14px; border-radius: 12px; border: none; width: 100%; 
             font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; transition: 0.3s; 
         }
-        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
-        .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .btn:hover { opacity: 0.9; }
+        .btn-green { background: #10b981; }
         
-        h1, h2 { color: #f8fafc; margin-bottom: 10px; }
-        p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        h1, h2, h3 { color: #f9fafb; margin-bottom: 10px; }
+        p { color: #9ca3af; font-size: 14px; line-height: 1.6; margin-bottom: 15px; }
         
-        .hero-img { 
-            width: 100%; height: 190px; object-fit: cover; border-radius: 16px; 
-            margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        /* تنسيق مربعات المميزات الشبيهة للصورة */
+        .feature-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; text-align: right; }
+        .feature-box { 
+            background: #1f2937; padding: 20px; border-radius: 16px; 
+            border: 1px solid #374151; transition: 0.3s; 
         }
-
-        .price-box { 
-            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155; 
-            padding: 16px; border-radius: 16px; margin: 12px 0; cursor: pointer; 
-            transition: 0.3s; text-align: right; display: flex; justify-content: space-between; align-items: center;
+        .feature-box:hover { border-color: #10b981; }
+        .feature-box h3 { color: #f3f4f6; font-size: 18px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+        
+        /* تنسيق خطط الاشتراكات */
+        .plans-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+        .price-card { 
+            background: #1f2937; border: 2px solid #374151; 
+            padding: 20px; border-radius: 16px; cursor: pointer; 
+            transition: 0.3s; text-align: center; position: relative;
         }
-        .price-box:hover { border-color: #38bdf8; transform: scale(1.02); }
-        .price-box .p-title { font-weight: bold; font-size: 16px; color: #f8fafc; }
-        .price-box .p-val { font-size: 18px; font-weight: bold; color: #22c55e; }
+        .price-card:hover { border-color: #10b981; transform: scale(1.02); }
+        .price-card.featured { border-color: #10b981; background: rgba(16, 185, 129, 0.05); }
+        .badge { 
+            position: absolute; top: -12px; right: 20px; background: #10b981; color: #fff; 
+            padding: 3px 12px; font-size: 12px; font-weight: bold; border-radius: 20px; 
+        }
+        .price-val { font-size: 26px; font-weight: bold; color: #10b981; margin: 10px 0; }
         
         .vodafone-banner { 
-            background: rgba(250, 204, 21, 0.1); border: 1px dashed #facc15; 
-            padding: 15px; border-radius: 16px; margin-bottom: 20px; 
+            background: rgba(234, 179, 8, 0.1); border: 1px dashed #eab308; 
+            padding: 15px; border-radius: 16px; margin-bottom: 20px; text-align: center;
         }
-        .link-text { color: #38bdf8; cursor: pointer; font-size: 14px; margin-top: 15px; display: inline-block; text-decoration: underline; }
+        .link-text { color: #60a5fa; cursor: pointer; font-size: 14px; margin-top: 15px; display: inline-block; text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -71,8 +80,8 @@
 
     <!-- 1. صفحة تسجيل الدخول -->
     <div id="loginPage" class="page active card">
-        <h1>MarwanAlgo</h1>
-        <p>بوابتك الأولى للاحتراف والوساطة المالية الآلية</p>
+        <h2>MarwanAlgo</h2>
+        <p>تسجيل الدخول للمتابعة إلى المنصة</p>
         <input type="text" id="loginUser" placeholder="رقم الهاتف أو البريد الإلكتروني">
         <input type="password" id="loginPass" placeholder="كلمة المرور">
         <button class="btn" onclick="handleLogin()">تسجيل الدخول</button>
@@ -81,42 +90,71 @@
 
     <!-- 2. صفحة إنشاء حساب (إجبارية أولاً) -->
     <div id="registerPage" class="page card">
-        <h1>إنشاء حساب جديد</h1>
-        <p>انضم إلى ملايين المتداولين وابدأ رحلة الأرباح الآمنة</p>
+        <h2>إنشاء حساب جديد</h2>
+        <p>انضم الآن وابدأ التداول الآلي بكل أمان</p>
         <input type="text" id="regUser" placeholder="اسم المستخدم أو الهاتف">
         <input type="password" id="regPass" placeholder="كلمة المرور الجديدة">
         <button class="btn btn-green" onclick="handleRegister()">إنشاء الحساب الآن</button>
         <span class="link-text" onclick="showPage('loginPage')">لديك حساب بالفعل؟ تسجيل الدخول</span>
     </div>
 
-    <!-- 3. الصفحة الرئيسية (صور عالمية + نبذة عن التداول + الباقات الكبيرة) -->
-    <div id="homePage" class="page card">
-        <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=500" class="hero-img" alt="Global Trading">
-        <h2 style="color: #38bdf8;">الوسيط الأقوى عالمياً لخدمات التداول الآلي</h2>
-        <p>استمتع بتنفيذ فائق السرعة، أدوات تحليل متطورة، وأمان تام لحسابك على المنصات العالمية لضمان أعلى عوائد.</p>
+    <!-- 3. الصفحة الرئيسية (مطابقة للتسلسل الموجود في الصورة) -->
+    <div id="homePage" class="page">
+        <div class="card" style="text-align: right;">
+            <h2 style="text-align: center; color: #38bdf8; margin-bottom: 10px;">لماذا تختار بوت MarwanAlgo؟</h2>
+            <p style="text-align: center; margin-bottom: 25px;">الصم البوت ليوفر لك تجربة تداول آمنة وسهلة بدون الحاجة لمراقبة الشاشة طوال اليوم.</p>
+            
+            <!-- مربعات المميزات حسب الصورة -->
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h3>🤖 تداول أوتوماتيكي 100%</h3>
+                    <p>ينفذ البوت الصفقات تلقائياً بناءً على تحليل فني دقيق بدون أي تدخل بشري أو عواطف.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🛡️ إدارة مخاطر صارمة</h3>
+                    <p>تحديد تلقائي للهدف (Take Profit) ووقف الخسارة (Stop Loss) لحماية حسابك في أوقات تقلب السوق.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>🔑 تفعيل آمن وخاص بك</h3>
+                    <p>ترخيص مخصص يربط البوت بحسابك فقط لضمان أعلى مستويات الأمان والجودة.</p>
+                </div>
+            </div>
+        </div>
 
-        <h3 style="font-size: 16px; margin: 15px 0; color: #cbd5e1;">اختر باقتك الاحترافية للبدء:</h3>
-        
-        <div class="price-box" onclick="selectPlan('الباقة الأسبوعية', '$19')">
-            <div class="p-title">الباقة الأسبوعية</div>
-            <div class="p-val">$19</div>
-        </div>
-        <div class="price-box" onclick="selectPlan('الباقة الشهرية', '$49')">
-            <div class="p-title">الباقة الشهرية</div>
-            <div class="p-val">$49</div>
-        </div>
-        <div class="price-box" onclick="selectPlan('الباقة السنوية', '$399')">
-            <div class="p-title">الباقة السنوية (الأكثر توفيراً)</div>
-            <div class="p-val">$399</div>
+        <!-- خطط الاشتراكات (مطابقة للصورة) -->
+        <div class="card">
+            <h2>خطط الاشتراكات</h2>
+            <p>اختر الخطة المناسبة لك وابدأ التداول الآلي في دقائق</p>
+            
+            <div class="plans-container">
+                <div class="price-card featured" onclick="selectPlan('الاشتراك السنوية', '$399')">
+                    <div class="badge">الأكثر طلباً</div>
+                    <h3>الاشتراك السنوي</h3>
+                    <div class="price-val">$399</div>
+                    <p style="margin:0;">توفير كامل ومتابعة مستمرة طوال العام</p>
+                </div>
+
+                <div class="price-card" onclick="selectPlan('الاشتراك الشهري', '$49')">
+                    <h3>الاشتراك الشهري</h3>
+                    <div class="price-val">$49</div>
+                    <p style="margin:0;">مناسب للبدء بقوة وتحقيق أرباح شهرية</p>
+                </div>
+
+                <div class="price-card" onclick="selectPlan('الاشتراك الأسبوعي', '$19')">
+                    <h3>الاشتراك الأسبوعي</h3>
+                    <div class="price-val">$19</div>
+                    <p style="margin:0;">جرب الأداء القوي للبوت لفترة قصيرة</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- 4. صفحة الدفع (فودافون كاش + البيانات) -->
+    <!-- 4. صفحة الدفع والبيانات -->
     <div id="payPage" class="page card">
         <h2>إتمام الاشتراك الآمن</h2>
         <div class="vodafone-banner">
-            <p style="margin: 0; color: #f8fafc; font-size: 13px;">حول المبلغ المطلوب حصرياً على فودافون كاش:</p>
-            <h2 style="color: #facc15; margin: 5px 0 0 0; font-size: 24px; letter-spacing: 1px;">01028365021</h2>
+            <p style="margin: 0; color: #f9fafb; font-size: 13px;">تحويل المبلغ المطلوب عبر فودافون كاش:</p>
+            <h2 style="color: #eab308; margin: 5px 0 0 0; font-size: 24px; letter-spacing: 1px;">01028365021</h2>
         </div>
         <input type="text" id="firstName" placeholder="الاسم الأول فقط">
         <input type="text" id="phoneNum" placeholder="رقم واتساب للتواصل">
@@ -124,14 +162,14 @@
         <button class="btn btn-green" onclick="validatePayment()">تأكيد عملية التحويل</button>
     </div>
 
-    <!-- 5. الصفحة الأخيرة (اتواصل مع مروان + رقم الكاش فوق) -->
+    <!-- 5. الصفحة الأخيرة -->
     <div id="donePage" class="page card">
-        <div class="vodafone-banner" style="border-color: #22c55e; background: rgba(34, 197, 94, 0.1);">
-            <p style="margin: 0; color: #f8fafc; font-size: 13px;">رقم فودافون كاش المعتمد للتحويل:</p>
-            <h3 style="color: #facc15; margin: 5px 0; font-size: 22px;">01028365021</h3>
+        <div class="vodafone-banner" style="border-color: #10b981; background: rgba(16, 185, 129, 0.1);">
+            <p style="margin: 0; color: #f9fafb; font-size: 13px;">رقم فودافون كاش المعتمد للتحويل:</p>
+            <h3 style="color: #eab308; margin: 5px 0; font-size: 22px;">01028365021</h3>
         </div>
-        <h2 style="color: #22c55e;">تم تسجيل طلبك بنجاح!</h2>
-        <p>قم بإرسال إيصال التحويل مع بياناتك الآن عبر الواتساب.</p>
+        <h2 style="color: #10b981;">تم تسجيل طلبك بنجاح!</h2>
+        <p>قم بإرسال إيصال التحويل مع بياناتك الآن لتفعيل حسابك.</p>
         <button class="btn" style="background: #25d366;" onclick="openWhatsApp()">اتواصل مع مروان لتفعيل البوت</button>
     </div>
 
