@@ -3,94 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarwanAlgo - بوت الذهب الاحترافي</title>
+    <title>MarwanAlgo | التداول الذكي</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 0; box-sizing: border-box; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 8%; background-color: #1e293b; border-bottom: 1px solid #334155; }
-        .logo { font-size: 22px; font-weight: bold; color: #38bdf8; }
-        .cta-btn { background-color: #22c55e; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: bold; }
-        .hero { text-align: center; padding: 60px 20px 30px; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-size: 38px; color: #fff; margin-bottom: 15px; }
-        .hero h1 span { color: #38bdf8; }
-        .pricing-section { display: flex; justify-content: center; gap: 20px; padding: 0 20px 60px; flex-wrap: wrap; }
-        .price-card { background-color: #1e293b; border: 1px solid #334155; padding: 30px 20px; border-radius: 12px; width: 280px; text-align: center; }
-        .price { font-size: 28px; font-weight: bold; color: #fff; margin: 15px 0; }
-        .select-plan-btn { background-color: #e11d48; color: white; width: 100%; padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .main-container { max-width: 480px; margin: 40px auto; padding: 0 20px; }
-        .card-box { background-color: #1e293b; padding: 30px; border-radius: 12px; display: none; }
-        .active-section { display: block; }
-        h2 { text-align: center; color: #38bdf8; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; color: #cbd5e1; }
-        input { width: 100%; padding: 10px; border: 1px solid #475569; background-color: #0f172a; color: #fff; border-radius: 6px; box-sizing: border-box; }
-        .vodafone-box { background: #0f172a; padding: 15px; border-radius: 6px; text-align: center; border: 1px dashed #38bdf8; margin-bottom: 15px; line-height: 1.6; }
-        .success-icon { font-size: 50px; color: #22c55e; text-align: center; margin-bottom: 10px; }
-        .wa-btn { background-color: #25d366; color: white; width: 100%; padding: 12px; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #fff; margin: 0; padding: 0; }
+        .container { max-width: 500px; margin: 0 auto; padding: 20px; text-align: center; }
+        
+        /* القسم الترحيبي */
+        .welcome-section { padding: 40px 0; }
+        .welcome-img { width: 100%; max-width: 300px; border-radius: 20px; margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        h1 { color: #38bdf8; margin-bottom: 10px; }
+        p { color: #94a3b8; line-height: 1.6; margin-bottom: 30px; }
+
+        /* الباقات */
+        .card { background: #1e293b; padding: 25px; border-radius: 15px; margin-bottom: 20px; border: 1px solid #334155; }
+        .btn { background: #22c55e; color: #fff; padding: 12px 25px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; margin-top: 10px; }
+        .btn-red { background: #e11d48; }
+
+        /* التحكم في الصفحات */
+        .page { display: none; animation: fadeIn 0.5s; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; box-sizing: border-box; }
+        .vodafone-msg { background: #0f172a; padding: 15px; border-radius: 10px; border: 1px dashed #38bdf8; margin: 20px 0; }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">MarwanAlgo</div>
-        <a href="#" class="cta-btn" onclick="showSection('homeSection')">الباقات</a>
-    </header>
-
-    <div id="homeSection" class="active-section">
-        <section class="hero">
-            <h1>تداول بذكاء وآلية كاملة مع <span>MarwanAlgo</span></h1>
-        </section>
-        <div class="pricing-section">
-            <div class="price-card"> <h3>الأسبوعي</h3><div class="price">$19</div><button class="select-plan-btn" onclick="selectPlan('أسبوعي', '$19')">اشترك الآن</button></div>
-            <div class="price-card"> <h3>الشهري</h3><div class="price">$49</div><button class="select-plan-btn" onclick="selectPlan('شهري', '$49')">اشترك الآن</button></div>
-            <div class="price-card"> <h3>السنوي</h3><div class="price">$399</div><button class="select-plan-btn" onclick="selectPlan('سنوي', '$399')">اشترك الآن</button></div>
+    <div class="container">
+        <!-- الصفحة 1: الترحيب والباقات -->
+        <div id="page1" class="page active">
+            <div class="welcome-section">
+                <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=500" alt="Trading" class="welcome-img">
+                <h1>MarwanAlgo</h1>
+                <p>حول تداولك إلى تجربة آلية مربحة. دقة، سرعة، وأمان لحسابك في MetaTrader 5.</p>
+            </div>
+            
+            <div class="card">
+                <h3>الباقة الأسبوعية</h3>
+                <div style="font-size: 24px; font-weight: bold;">$19</div>
+                <button class="btn" onclick="nextPage(1)">اختر الأسبوعي</button>
+            </div>
+            <div class="card">
+                <h3>الباقة الشهرية</h3>
+                <div style="font-size: 24px; font-weight: bold;">$49</div>
+                <button class="btn" onclick="nextPage(2)">اختر الشهري</button>
+            </div>
         </div>
-    </div>
 
-    <div class="main-container">
-        <div id="checkoutSection" class="card-box">
-            <h2>تأكيد الطلب</h2>
-            <div class="vodafone-box">
-                لإتمام اشتراكك، قم بتحويل المبلغ على فودافون كاش: <br>
+        <!-- الصفحة 2: إدخال البيانات -->
+        <div id="page2" class="page">
+            <h2>إتمام الاشتراك</h2>
+            <div class="vodafone-msg">
+                حول المبلغ المطلوب إلى فودافون كاش على الرقم:<br>
                 <strong style="color: #facc15; font-size: 20px;">01028365021</strong>
             </div>
-            <form id="orderForm">
-                <div class="form-group"><label>الاسم الكامل:</label><input type="text" id="name" required></div>
-                <div class="form-group"><label>رقم واتساب:</label><input type="text" id="phone" required></div>
-                <div class="form-group"><label>رقم حساب MT5:</label><input type="number" id="mt5_account" required></div>
-                <button type="submit" class="wa-btn" style="background-color: #e11d48;">تأكيد البيانات</button>
-            </form>
+            <input type="text" id="name" placeholder="الاسم الكامل">
+            <input type="text" id="phone" placeholder="رقم الواتساب">
+            <input type="number" id="account" placeholder="رقم حساب MT5">
+            <button class="btn btn-red" onclick="finish()">تأكيد وإرسال البيانات</button>
         </div>
 
-        <div id="dashboardSection" class="card-box">
-            <div class="success-icon">✓</div>
-            <h2 style="color: #22c55e;">تم تسجيل طلبك بنجاح!</h2>
-            <div class="vodafone-box">
-                بانتظار مراجعة التحويل يدوياً...<br>
-                يرجى الضغط على الزر أدناه لإرسال سكرين شوت التحويل وتفعيل حسابك فوراً.
-            </div>
-            <button class="wa-btn" id="sendWaBtn">إرسال التحويل وتفعيل البوت</button>
+        <!-- الصفحة 3: النجاح -->
+        <div id="page3" class="page">
+            <h1 style="color: #22c55e;">تم الطلب بنجاح!</h1>
+            <p>نحن بانتظار إيصال التحويل الخاص بك لتفعيل البوت فوراً.</p>
+            <button class="btn" onclick="sendWhatsApp()">إرسال الإيصال عبر واتساب</button>
         </div>
     </div>
 
     <script>
-        let clientData = {};
-        function showSection(s) {
-            document.getElementById('homeSection').style.display = (s == 'homeSection') ? 'block' : 'none';
-            document.getElementById('checkoutSection').style.display = (s == 'checkoutSection') ? 'block' : 'none';
-            document.getElementById('dashboardSection').style.display = (s == 'dashboardSection') ? 'block' : 'none';
+        let selectedPlan = "";
+        function nextPage(planId) {
+            selectedPlan = planId === 1 ? "أسبوعي ($19)" : "شهري ($49)";
+            document.getElementById('page1').classList.remove('active');
+            document.getElementById('page2').classList.add('active');
         }
-        function selectPlan(p, pr) { clientData.plan = p + ' ' + pr; showSection('checkoutSection'); }
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            clientData.name = document.getElementById('name').value;
-            clientData.phone = document.getElementById('phone').value;
-            clientData.account = document.getElementById('mt5_account').value;
-            showSection('dashboardSection');
-        });
-        document.getElementById('sendWaBtn').addEventListener('click', function() {
-            const msg = `مرحباً مروان، هذا طلب تفعيل جديد:%0a- الباقة: ${clientData.plan}%0a- الاسم: ${clientData.name}%0a- الموبايل: ${clientData.phone}%0a- حساب MT5: ${clientData.account}%0a%0a(أرجو تفعيل حسابي بعد التأكد من التحويل)`;
+
+        function finish() {
+            document.getElementById('page2').classList.remove('active');
+            document.getElementById('page3').classList.add('active');
+        }
+
+        function sendWhatsApp() {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const acc = document.getElementById('account').value;
+            const msg = `طلب جديد:%0aالباقة: ${selectedPlan}%0aالاسم: ${name}%0aالواتساب: ${phone}%0aحساب MT5: ${acc}%0a%0aمرفق إيصال التحويل (فودافون كاش)`;
             window.open(`https://wa.me/201028365021?text=${msg}`, '_blank');
-        });
+        }
     </script>
 </body>
 </html>
