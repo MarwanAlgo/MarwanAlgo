@@ -2,78 +2,201 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MarwanAlgo | احتراف التداول</title>
+    <title>MarwanAlgo | النظام الاحترافي للتداول الآلي</title>
     <style>
         body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background: linear-gradient(135deg, #1e293b, #312e81, #0f172a); 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81); 
             background-attachment: fixed;
-            color: #fff; margin: 0; padding: 0; 
+            color: #fff; margin: 0; padding: 20px; 
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
+            box-sizing: border-box;
         }
-        .container { width: 90%; max-width: 400px; text-align: center; }
+        .container { width: 100%; max-width: 450px; text-align: center; }
         .page { display: none; }
-        .active { display: block; }
-        .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: none; background: rgba(255,255,255,0.9); color: #000; box-sizing: border-box; }
-        .btn { background: #8b5cf6; color: #fff; padding: 15px; border-radius: 12px; border: none; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn:hover { background: #6d28d9; }
-        h1, h2 { color: #fff; margin-bottom: 20px; }
-        .price-box { background: #facc15; color: #000; padding: 15px; border-radius: 15px; margin: 10px 0; cursor: pointer; font-weight: bold; }
+        .active { display: block; animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .card { 
+            background: rgba(30, 41, 59, 0.75); 
+            backdrop-filter: blur(16px); 
+            padding: 30px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        input { 
+            width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; 
+            border: 1px solid #475569; background: rgba(15, 23, 42, 0.8); color: #fff; 
+            box-sizing: border-box; font-size: 15px; outline: none; transition: 0.3s;
+        }
+        input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
+        
+        .btn { 
+            background: linear-gradient(135deg, #38bdf8, #2563eb); color: #fff; 
+            padding: 14px; border-radius: 12px; border: none; width: 100%; 
+            font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 15px; transition: 0.3s; 
+        }
+        .btn:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-green { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        
+        h1, h2 { color: #f8fafc; margin-bottom: 10px; }
+        p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+        
+        .hero-img { 
+            width: 100%; height: 180px; object-fit: cover; border-radius: 16px; 
+            margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); 
+        }
+        
+        .price-box { 
+            background: rgba(15, 23, 42, 0.9); border: 2px solid #334155; 
+            padding: 15px; border-radius: 16px; margin: 12px 0; cursor: pointer; 
+            transition: 0.3s; text-align: right; display: flex; justify-content: space-between; align-items: center;
+        }
+        .price-box:hover { border-color: #38bdf8; transform: scale(1.02); }
+        .price-box .p-title { font-weight: bold; font-size: 16px; color: #f8fafc; }
+        .price-box .p-val { font-size: 18px; font-weight: bold; color: #22c55e; }
+        
+        .vodafone-banner { 
+            background: rgba(250, 204, 21, 0.1); border: 1px dashed #facc15; 
+            padding: 15px; border-radius: 16px; margin-bottom: 20px; 
+        }
+        .link-text { color: #38bdf8; cursor: pointer; font-size: 14px; margin-top: 15px; display: inline-block; text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 1. تسجيل الدخول -->
-    <div id="p1" class="page active card">
+
+    <!-- 1. صفحة تسجيل الدخول -->
+    <div id="loginPage" class="page active card">
         <h1>MarwanAlgo</h1>
-        <p>ابدأ رحلة التداول الاحترافية</p>
-        <input type="text" id="user" placeholder="اسم المستخدم">
-        <input type="password" placeholder="كلمة المرور">
-        <button class="btn" onclick="show('p2')">تسجيل الدخول</button>
-        <p style="margin-top:20px; font-size: 14px; cursor: pointer;" onclick="alert('قم بإنشاء حساب جديد أولاً عبر إدخال بياناتك!')">ليس لديك حساب؟ <u>إنشاء حساب جديد</u></p>
+        <p>مرحباً بك مجدداً، سجل دخولك للمتابعة</p>
+        <input type="text" id="loginUser" placeholder="رقم الهاتف أو البريد">
+        <input type="password" id="loginPass" placeholder="كلمة المرور">
+        <button class="btn" onclick="handleLogin()">تسجيل الدخول</button>
+        <span class="link-text" onclick="showPage('registerPage')">ليس لديك حساب؟ إنشاء حساب جديد</span>
     </div>
 
-    <!-- 2. الرئيسية -->
-    <div id="p2" class="page card">
-        <h2>اختر باقتك</h2>
-        <div class="price-box" onclick="goToPay('الأسبوعي', '$19')">الأسبوعي - $19</div>
-        <div class="price-box" onclick="goToPay('الشهري', '$49')">الشهري - $49</div>
-        <div class="price-box" onclick="goToPay('السنوي', '$399')">السنوي - $399</div>
+    <!-- 2. صفحة إنشاء حساب (إجبارية أولاً) -->
+    <div id="registerPage" class="page card">
+        <h1>إنشاء حساب جديد</h1>
+        <p>انضم الآن إلى أقوى نظام تداول آلي في السوق</p>
+        <input type="text" id="regUser" placeholder="اسم المستخدم أو الهاتف">
+        <input type="password" id="regPass" placeholder="كلمة المرور الجديدة">
+        <button class="btn btn-green" onclick="handleRegister()">إنشاء الحساب الآن</button>
+        <span class="link-text" onclick="showPage('loginPage')">لديك حساب بالفعل؟ تسجيل الدخول</span>
     </div>
 
-    <!-- 3. الدفع -->
-    <div id="p3" class="page card">
-        <h2 style="color: #facc15;">فودافون كاش: 01028365021</h2>
-        <p>قم بالتحويل ثم أكمل البيانات</p>
-        <input type="text" id="firstName" placeholder="الاسم الأول">
-        <input type="text" id="phoneNum" placeholder="رقم واتساب">
-        <input type="text" id="mt5" placeholder="رقم حساب MT5">
-        <button class="btn" onclick="checkPay()">تأكيد التحويل</button>
+    <!-- 3. الصفحة الرئيسية (الترحيب والكلام الحلو + صور التداول + الباقات الكبيرة) -->
+    <div id="homePage" class="page card">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" class="hero-img" alt="Trading">
+        <h2 style="color: #38bdf8;">مستقبل التداول الذكي بين يديك</h2>
+        <p>استمتع بدقة متناهية، أرباح مستقرة، وتشغيل تلقائي 24/7 مع خوارزميات MarwanAlgo المتطورة لحماية رأس مالك.</p>
+        
+        <h3 style="font-size: 16px; margin: 15px 0; color: #cbd5e1;">اختر باقتك المفضلة للبدء:</h3>
+        
+        <div class="price-box" onclick="selectPlan('الباقة الأسبوعية', '$19')">
+            <div class="p-title">الباقة الأسبوعية</div>
+            <div class="p-val">$19</div>
+        </div>
+        <div class="price-box" onclick="selectPlan('الباقة الشهرية', '$49')">
+            <div class="p-title">الباقة الشهرية</div>
+            <div class="p-val">$49</div>
+        </div>
+        <div class="price-box" onclick="selectPlan('الباقة السنوية', '$399')">
+            <div class="p-title">الباقة السنوية (الأكثر توفيراً)</div>
+            <div class="p-val">$399</div>
+        </div>
     </div>
 
-    <!-- 4. النهاية -->
-    <div id="p4" class="page card">
-        <h2 style="color:#22c55e">جاري المراجعة...</h2>
-        <p>سيقوم مروان بالتواصل معك عبر واتساب لتفعيل البوت فور التأكد من التحويل.</p>
-        <button class="btn" onclick="finalWhatsApp()">تواصل معي الآن</button>
+    <!-- 4. صفحة الدفع (فودافون كاش + البيانات) -->
+    <div id="payPage" class="page card">
+        <h2>إتمام الاشتراك</h2>
+        <div class="vodafone-banner">
+            <p style="margin: 0; color: #f8fafc; font-size: 13px;">حول المبلغ المطلوب حصرياً على فودافون كاش:</p>
+            <h2 style="color: #facc15; margin: 5px 0 0 0; font-size: 22px; letter-spacing: 1px;">01028365021</h2>
+        </div>
+        <input type="text" id="firstName" placeholder="الاسم الأول فقط">
+        <input type="text" id="phoneNum" placeholder="رقم واتساب للتواصل">
+        <input type="text" id="mt5" placeholder="رقم حساب MT5 الخاص بك">
+        <button class="btn btn-green" onclick="validatePayment()">تأكيد عملية التحويل</button>
     </div>
+
+    <!-- 5. الصفحة الأخيرة (مروان يتواصل معك + رقم الكاش فوق) -->
+    <div id="donePage" class="page card">
+        <div class="vodafone-banner" style="border-color: #22c55e; background: rgba(34, 197, 94, 0.1);">
+            <p style="margin: 0; color: #f8fafc; font-size: 13px;">رقم فودافون كاش المعتمد:</p>
+            <h3 style="color: #facc15; margin: 5px 0; font-size: 20px;">01028365021</h3>
+        </div>
+        <h2 style="color: #22c55e;">طلبك قيد المراجعة الفورية!</h2>
+        <p><strong>مروان</strong> سيتواصل معك شخصياً عبر واتساب فوراً بعد التحقق من إيصال التحويل لتفعيل البوت الخاص بك.</p>
+        <button class="btn" style="background: #25d366;" onclick="openWhatsApp()">تواصل مع مروان عبر واتساب</button>
+    </div>
+
 </div>
 
 <script>
-    let userData = {};
-    function show(id) {
+    let registeredUser = null;
+    let selectedPlanData = "";
+
+    function showPage(id) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(id).classList.add('active');
     }
-    function goToPay(p, pr) { userData.plan = p + " " + pr; show('p3'); }
-    function checkPay() {
-        if(document.getElementById('firstName').value === "") { alert("أدخل الاسم أولاً!"); return; }
-        show('p4');
+
+    function handleRegister() {
+        const u = document.getElementById('regUser').value;
+        const p = document.getElementById('regPass').value;
+        if(u === "" || p === "") {
+            alert("يرجى ملء بيانات إنشاء الحساب أولاً!");
+            return;
+        }
+        registeredUser = { user: u, pass: p };
+        alert("تم إنشاء الحساب بنجاح! يجيب عليك تسجيل الدخول الآن.");
+        showPage('loginPage');
     }
-    function finalWhatsApp() {
-        const msg = `طلب تفعيل ${userData.plan}%0aالاسم: ${document.getElementById('firstName').value}`;
+
+    function handleLogin() {
+        const u = document.getElementById('loginUser').value;
+        const p = document.getElementById('loginPass').value;
+        
+        if(!registeredUser) {
+            alert("عذراً، لم تقم بإنشاء حساب بعد! يرجى الضغط على 'إنشاء حساب جديد' أولاً.");
+            showPage('registerPage');
+            return;
+        }
+
+        if(u === registeredUser.user && p === registeredUser.pass) {
+            showPage('homePage');
+        } else {
+            alert("خطأ في البيانات أو أن الحساب غير موجود. تأكد من إدخال بياناتك الصحيحة أو أنشئ حساباً جديداً.");
+        }
+    }
+
+    function selectPlan(planName, price) {
+        selectedPlanData = planName + " (" + price + ")";
+        showPage('payPage');
+    }
+
+    function validatePayment() {
+        const fName = document.getElementById('firstName').value;
+        const phone = document.getElementById('phoneNum').value;
+        const mt5Acc = document.getElementById('mt5').value;
+
+        if(fName === "" || phone === "" || mt5Acc === "") {
+            alert("عذراً، يجب ملء جميع الحقول (الاسم، الواتساب، وحساب MT5) للانتقال للخطوة التالية!");
+            return;
+        }
+        showPage('donePage');
+    }
+
+    function openWhatsApp() {
+        const fName = document.getElementById('firstName').value;
+        const phone = document.getElementById('phoneNum').value;
+        const mt5Acc = document.getElementById('mt5').value;
+        
+        const msg = `مرحباً مروان، أود تفعيل البوت.%0a- الباقة: ${selectedPlanData}%0a- الاسم: ${fName}%0a- الواتساب: ${phone}%0a- حساب MT5: ${mt5Acc}%0a%0a(تم التحويل على فودافون كاش 01028365021 ومرفق الإيصال)`;
         window.open(`https://wa.me/201028365021?text=${msg}`, '_blank');
     }
 </script>
