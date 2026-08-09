@@ -2,32 +2,33 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MarwanAlgo | النظام الاحترافي للتداول الآلي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarwanAlgo | الوسيط الاحترافي للتداول الآلي</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, sans-serif; 
-            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81); 
+            background: linear-gradient(135deg, #090d16, #111827, #1e1b4b); 
             background-attachment: fixed;
-            color: #fff; margin: 0; padding: 20px; 
+            color: #fff; margin: 0; padding: 0; 
             display: flex; justify-content: center; align-items: center; min-height: 100vh;
-            box-sizing: border-box;
         }
-        .container { width: 100%; max-width: 450px; text-align: center; }
+        .container { width: 100%; max-width: 480px; padding: 20px; box-sizing: border-box; }
         .page { display: none; }
         .active { display: block; animation: fadeIn 0.4s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
         .card { 
-            background: rgba(30, 41, 59, 0.75); 
+            background: rgba(30, 41, 59, 0.85); 
             backdrop-filter: blur(16px); 
             padding: 30px; 
             border-radius: 24px; 
             border: 1px solid rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            text-align: center;
         }
         input { 
             width: 100%; padding: 14px; margin: 10px 0; border-radius: 12px; 
-            border: 1px solid #475569; background: rgba(15, 23, 42, 0.8); color: #fff; 
+            border: 1px solid #475569; background: rgba(15, 23, 42, 0.9); color: #fff; 
             box-sizing: border-box; font-size: 15px; outline: none; transition: 0.3s;
         }
         input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.3); }
@@ -44,13 +45,21 @@
         p { color: #94a3b8; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
         
         .hero-img { 
-            width: 100%; height: 180px; object-fit: cover; border-radius: 16px; 
+            width: 100%; height: 190px; object-fit: cover; border-radius: 16px; 
             margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.1); 
         }
         
+        .video-container {
+            position: relative; width: 100%; padding-bottom: 56.25%; height: 0; 
+            margin-bottom: 15px; border-radius: 16px; overflow: hidden; border: 1px solid #334155;
+        }
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+        }
+
         .price-box { 
             background: rgba(15, 23, 42, 0.9); border: 2px solid #334155; 
-            padding: 15px; border-radius: 16px; margin: 12px 0; cursor: pointer; 
+            padding: 16px; border-radius: 16px; margin: 12px 0; cursor: pointer; 
             transition: 0.3s; text-align: right; display: flex; justify-content: space-between; align-items: center;
         }
         .price-box:hover { border-color: #38bdf8; transform: scale(1.02); }
@@ -71,8 +80,8 @@
     <!-- 1. صفحة تسجيل الدخول -->
     <div id="loginPage" class="page active card">
         <h1>MarwanAlgo</h1>
-        <p>مرحباً بك مجدداً، سجل دخولك للمتابعة</p>
-        <input type="text" id="loginUser" placeholder="رقم الهاتف أو البريد">
+        <p>بوابتك الأولى للاحتراف والوساطة المالية الآلية</p>
+        <input type="text" id="loginUser" placeholder="رقم الهاتف أو البريد الإلكتروني">
         <input type="password" id="loginPass" placeholder="كلمة المرور">
         <button class="btn" onclick="handleLogin()">تسجيل الدخول</button>
         <span class="link-text" onclick="showPage('registerPage')">ليس لديك حساب؟ إنشاء حساب جديد</span>
@@ -81,20 +90,25 @@
     <!-- 2. صفحة إنشاء حساب (إجبارية أولاً) -->
     <div id="registerPage" class="page card">
         <h1>إنشاء حساب جديد</h1>
-        <p>انضم الآن إلى أقوى نظام تداول آلي في السوق</p>
+        <p>انضم إلى ملايين المتداولين وابدأ رحلة الأرباح الآمنة</p>
         <input type="text" id="regUser" placeholder="اسم المستخدم أو الهاتف">
         <input type="password" id="regPass" placeholder="كلمة المرور الجديدة">
         <button class="btn btn-green" onclick="handleRegister()">إنشاء الحساب الآن</button>
         <span class="link-text" onclick="showPage('loginPage')">لديك حساب بالفعل؟ تسجيل الدخول</span>
     </div>
 
-    <!-- 3. الصفحة الرئيسية (الترحيب والكلام الحلو + صور التداول + الباقات الكبيرة) -->
+    <!-- 3. الصفحة الرئيسية (فيديو تعليمي + صور عالمية + الباقات الكبيرة) -->
     <div id="homePage" class="page card">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" class="hero-img" alt="Trading">
-        <h2 style="color: #38bdf8;">مستقبل التداول الذكي بين يديك</h2>
-        <p>استمتع بدقة متناهية، أرباح مستقرة، وتشغيل تلقائي 24/7 مع خوارزميات MarwanAlgo المتطورة لحماية رأس مالك.</p>
+        <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=500" class="hero-img" alt="Global Trading">
+        <h2 style="color: #38bdf8;">الوسيط الأقوى عالمياً لخدمات التداول الآلي</h2>
+        <p>استمتع بتنفيذ فائق السرعة، أدوات تحليل متطورة، وأمان تام لحسابك على المنصات العالمية.</p>
         
-        <h3 style="font-size: 16px; margin: 15px 0; color: #cbd5e1;">اختر باقتك المفضلة للبدء:</h3>
+        <!-- فيديو تعليمي يوضح يعني إيه تداول -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/31kزل_متوسط?autoplay=0" allowfullscreen title="شرح التداول"></iframe>
+        </div>
+
+        <h3 style="font-size: 16px; margin: 15px 0; color: #cbd5e1;">اختر باقتك الاحترافية للبدء:</h3>
         
         <div class="price-box" onclick="selectPlan('الباقة الأسبوعية', '$19')">
             <div class="p-title">الباقة الأسبوعية</div>
@@ -112,10 +126,10 @@
 
     <!-- 4. صفحة الدفع (فودافون كاش + البيانات) -->
     <div id="payPage" class="page card">
-        <h2>إتمام الاشتراك</h2>
+        <h2>إتمام الاشتراك الآمن</h2>
         <div class="vodafone-banner">
             <p style="margin: 0; color: #f8fafc; font-size: 13px;">حول المبلغ المطلوب حصرياً على فودافون كاش:</p>
-            <h2 style="color: #facc15; margin: 5px 0 0 0; font-size: 22px; letter-spacing: 1px;">01028365021</h2>
+            <h2 style="color: #facc15; margin: 5px 0 0 0; font-size: 24px; letter-spacing: 1px;">01028365021</h2>
         </div>
         <input type="text" id="firstName" placeholder="الاسم الأول فقط">
         <input type="text" id="phoneNum" placeholder="رقم واتساب للتواصل">
@@ -127,10 +141,10 @@
     <div id="donePage" class="page card">
         <div class="vodafone-banner" style="border-color: #22c55e; background: rgba(34, 197, 94, 0.1);">
             <p style="margin: 0; color: #f8fafc; font-size: 13px;">رقم فودافون كاش المعتمد:</p>
-            <h3 style="color: #facc15; margin: 5px 0; font-size: 20px;">01028365021</h3>
+            <h3 style="color: #facc15; margin: 5px 0; font-size: 22px;">01028365021</h3>
         </div>
         <h2 style="color: #22c55e;">طلبك قيد المراجعة الفورية!</h2>
-        <p><strong>مروان</strong> سيتواصل معك شخصياً عبر واتساب فوراً بعد التحقق من إيصال التحويل لتفعيل البوت الخاص بك.</p>
+        <p><strong>مروان</strong> سيتواصل معك شخصياً عبر واتساب فوراً بعد التحقق من إيصال التحويل لتفعيل البوت وحسابك.</p>
         <button class="btn" style="background: #25d366;" onclick="openWhatsApp()">تواصل مع مروان عبر واتساب</button>
     </div>
 
@@ -153,7 +167,7 @@
             return;
         }
         registeredUser = { user: u, pass: p };
-        alert("تم إنشاء الحساب بنجاح! يجيب عليك تسجيل الدخول الآن.");
+        alert("تم إنشاء الحساب بنجاح! يرجى تسجيل الدخول الآن.");
         showPage('loginPage');
     }
 
@@ -170,7 +184,7 @@
         if(u === registeredUser.user && p === registeredUser.pass) {
             showPage('homePage');
         } else {
-            alert("خطأ في البيانات أو أن الحساب غير موجود. تأكد من إدخال بياناتك الصحيحة أو أنشئ حساباً جديداً.");
+            alert("خطأ في بيانات الدخول أو أن الحساب غير مسجل. تأكد من البيانات أو أنشئ حساباً جديداً.");
         }
     }
 
@@ -185,7 +199,7 @@
         const mt5Acc = document.getElementById('mt5').value;
 
         if(fName === "" || phone === "" || mt5Acc === "") {
-            alert("عذراً، يجب ملء جميع الحقول (الاسم، الواتساب، وحساب MT5) للانتقال للخطوة التالية!");
+            alert("عذراً، يجب ملء جميع الحقول الإجبارية (الاسم، الواتساب، وحساب MT5) للانتقال للخطوة التالية!");
             return;
         }
         showPage('donePage');
@@ -193,7 +207,7 @@
 
     function openWhatsApp() {
         const fName = document.getElementById('firstName').value;
-        const phone = document.getElementById('phoneNum').value;
+        const phone = document.getElementById('phoneNum.value') || document.getElementById('phoneNum').value;
         const mt5Acc = document.getElementById('mt5').value;
         
         const msg = `مرحباً مروان، أود تفعيل البوت.%0a- الباقة: ${selectedPlanData}%0a- الاسم: ${fName}%0a- الواتساب: ${phone}%0a- حساب MT5: ${mt5Acc}%0a%0a(تم التحويل على فودافون كاش 01028365021 ومرفق الإيصال)`;
