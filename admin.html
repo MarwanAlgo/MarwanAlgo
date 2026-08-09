@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarwanAlgo | لوحة الإدارة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151a23;
+            --accent-green: #00e676;
+            --accent-red: #ff5252;
+            --text-main: #ffffff;
+            --border-color: #232a36;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 2rem; }
+
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .logo { font-size: 1.5rem; font-weight: bold; }
+        .logo span { color: var(--accent-green); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; }
+
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #9e9e9e; }
+        input, select { width: 100%; padding: 0.8rem; background: #0b0e14; border: 1px solid var(--border-color); border-radius: 6px; color: white; }
+
+        .btn { background: var(--accent-green); color: #000; font-weight: bold; padding: 0.8rem 1.5rem; border: none; border-radius: 6px; cursor: pointer; width: 100%; }
+        .btn:hover { opacity: 0.9; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { text-align: right; padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        th { color: #9e9e9e; font-weight: normal; }
+
+        .status-active { color: var(--accent-green); font-weight: bold; }
+        .status-expired { color: var(--accent-red); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">Marwan<span>Algo</span> | لوحة التحكم الخاصة بمروان 👑</div>
+        <a href="index.html" style="color: #9e9e9e; text-decoration: none;">خروج للرئيسية</a>
+    </div>
+
+    <div class="grid">
+        <!-- قسم توليد المفاتيح -->
+        <div class="card">
+            <h3>🔑 توليد مفتاح تفعيل جديد</h3>
+            <br>
+            <div class="form-group">
+                <label>اسم العميل / البريد</label>
+                <input type="text" id="clientName" placeholder="أدخل اسم العميل">
+            </div>
+            <div class="form-group">
+                <label>مدة الاشتراك</label>
+                <select id="duration">
+                    <option value="7">تجريبي (7 أيام)</option>
+                    <option value="30">شهري (30 يوم)</option>
+                    <option value="365">سنوي (سنة كاملة)</option>
+                </select>
+            </div>
+            <button class="btn" onclick="generateKey()">إنشاء المفتاح فوراً</button>
+        </div>
+
+        <!-- إحصائيات سريعة -->
+        <div class="card">
+            <h3>📊 إحصائيات المنصة</h3>
+            <br>
+            <p><strong>إجمالي المشتركين:</strong> 3 عملاء</p>
+            <p><strong>المفاتيح النشطة:</strong> 2</p>
+            <p><strong>المفاتيح المنتهية:</strong> 1</p>
+        </div>
+    </div>
+
+    <!-- جدول إدارة المفاتيح -->
+    <div class="card">
+        <h3>📋 قائمة المشتركين والمفاتيح</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>اسم العميل</th>
+                    <th>مفتاح التفعيل (License Key)</th>
+                    <th>المدة</th>
+                    <th>الحالة</th>
+                    <th>إجراء</th>
+                </tr>
+            </thead>
+            <tbody id="keysTable">
+                <tr>
+                    <td>أحمد علي</td>
+                    <td><code>MA-8821-X9</code></td>
+                    <td>شهري (30 يوم)</td>
+                    <td><span class="status-active">نشط</span></td>
+                    <td><button style="background:var(--accent-red); color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">إيقاف</button></td>
+                </tr>
+                <tr>
+                    <td>محمود حسن</td>
+                    <td><code>MA-1029-Z3</code></td>
+                    <td>تجريبي (7 أيام)</td>
+                    <td><span class="status-expired">منتهي</span></td>
+                    <td><button style="background:var(--accent-green); color:black; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">تجديد</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function generateKey() {
+            const name = document.getElementById('clientName').value;
+            if(!name) { alert('من فضلك اكتب اسم العميل الأول!'); return; }
+            
+            const randomCode = 'MA-' + Math.floor(1000 + Math.random() * 9000) + '-K' + Math.floor(10 + Math.random() * 90);
+            alert('تم إنشاء المفتاح بنجاح للعميل (' + name + '):\n\nالمفتاح: ' + randomCode);
+        }
+    </script>
+
+</body>
+</html>
