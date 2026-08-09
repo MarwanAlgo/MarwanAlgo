@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شراء بوت الذهب الاحترافي - Gold Bot</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: #1e293b;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 480px;
+        }
+        h2 {
+            text-align: center;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #cbd5e1;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #475569;
+            background-color: #0f172a;
+            color: #fff;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #e11d48;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #be123c;
+        }
+        .price-box {
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px dashed #38bdf8;
+            font-size: 14px;
+        }
+        .price-box span {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+        .trust-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #334155;
+            font-size: 11px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        .trust-section h4 {
+            color: #e2e8f0;
+            margin: 0 0 5px 0;
+            font-size: 12px;
+        }
+        /* تصميم صفحة التأكيد المختفية لحد ما العميل يسجل */
+        #thankYouPage {
+            display: none;
+            text-align: center;
+        }
+        .success-icon {
+            font-size: 50px;
+            color: #22c55e;
+            margin-bottom: 10px;
+        }
+        .order-id {
+            background: #0f172a;
+            padding: 10px;
+            border-radius: 6px;
+            color: #facc15;
+            font-weight: bold;
+            margin: 15px 0;
+            letter-spacing: 1px;
+        }
+        .wa-btn {
+            background-color: #25d366;
+            margin-top: 10px;
+        }
+        .wa-btn:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- نموذج الطلب الأساسي -->
+        <div id="orderFormContainer">
+            <h2>منصة تفعيل Gold Bot</h2>
+            
+            <div class="price-box">
+                طريقة الدفع: <span>فودافون كاش</span><br>
+                رقم المحفظة للتحويل: <strong style="color: #facc15;">01028365021</strong>
+            </div>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>الاسم الكامل:</label>
+                    <input type="text" id="name" required placeholder="أدخل اسمك ثلاثي">
+                </div>
+                
+                <div class="form-group">
+                    <label>رقم واتساب للتواصل:</label>
+                    <input type="text" id="phone" required placeholder="01xxxxxxxx0">
+                </div>
+
+                <div class="form-group">
+                    <label>رقم حساب MetaTrader 5 (المراد تفعيله):</label>
+                    <input type="number" id="mt5_account" required placeholder="مثال: 100125938">
+                </div>
+
+                <button type="submit">تأكيد الطلب والانتقال للدفع</button>
+            </form>
+
+            <div class="trust-section">
+                <h4>🔒 سياسة الضمان والاسترجاع:</h4>
+                البوت يعمل بحماية كاملة على حسابك الشخصي في MT5. في حال واجهتك أي مشكلة تقنية خلال التشغيل، فريق الدعم الفني متاح لمساعدتك فوراً.
+            </div>
+        </div>
+
+        <!-- صفحة تأكيد الطلب (Thank You Page) تظهر بعد التسجيل -->
+        <div id="thankYouPage">
+            <div class="success-icon">✓</div>
+            <h2 style="color: #22c55e;">تم تسجيل طلبك بنجاح!</h2>
+            <p style="color: #cbd5e1; font-size: 14px;">شكراً لك يا <span id="clientName" style="color: #38bdf8; font-weight: bold;"></span>، لقد تم إنشاء طلبك بنجاح.</p>
+            
+            <div class="order-id">
+                رقم متابعة الطلب: <span id="orderNumber">#GOLD-9824</span>
+            </div>
+
+            <p style="font-size: 13px; color: #94a3b8; line-height: 1.6;">
+                الخطوة الأخيرة: برجاء تحويل قيمة الاشتراك على رقم فودافون كاش: <strong style="color: #facc15;">01028365021</strong>، ثم اضغط على الزر أدناه لإرسال (سكرين شوت التحويل) واستلام البوت فوراً.
+            </p>
+
+            <button class="wa-btn" id="sendWaBtn">إرسال الإيصال واستلام البوت عبر واتساب</button>
+        </div>
+
+    </div>
+
+    <script>
+        let globalData = {};
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات
+            globalData.name = document.getElementById('name').value;
+            globalData.phone = document.getElementById('phone').value;
+            globalData.account = document.getElementById('mt5_account').value;
+            
+            // توليد رقم عشوائي لمتابعة الطلب
+            const randomId = '#GOLD-' + Math.floor(1000 + Math.random() * 9000);
+            
+            // عرض بيانات صفحة التأكيد
+            document.getElementById('clientName').innerText = globalData.name;
+            document.getElementById('orderNumber').innerText = randomId;
+            
+            // إخفاء النموذج وإظهار صفحة الشكر
+            document.getElementById('orderFormContainer').style.display = 'none';
+            document.getElementById('thankYouPage').style.display = 'block';
+        });
+
+        // زرار تحويل واتساب بعد تأكيد الطلب
+        document.getElementById('sendWaBtn').addEventListener('click', function() {
+            const msg = `مرحباً، لقد قمت بتقديم طلب تفعيل Gold Bot.%0a- رقم الطلب: ${document.getElementById('orderNumber').innerText}%0a- الاسم: ${globalData.name}%0a- الموبايل: ${globalData.phone}%0a- رقم حساب MT5: ${globalData.account}%0a%0a(مرفق سكرين شوت تحويل فودافون كاش)`;
+            
+            window.open(`https://wa.me/201028365021?text=${msg}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+    "allowed_accounts": [
+        100125938
+    ],
+    "expiry_date": "2026-12-31",
+    "lot_size": 0.01,
+    "stop_loss_pips": 50,
+    "take_profit_pips": 100
+}
