@@ -2,95 +2,78 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MarwanAlgo | النظام الذكي</title>
+    <title>MarwanAlgo | احتراف التداول</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0b0f19; color: #fff; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 0 auto; padding: 20px; }
-        .page { display: none; animation: fadeIn 0.5s; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: linear-gradient(135deg, #1e293b, #312e81, #0f172a); 
+            background-attachment: fixed;
+            color: #fff; margin: 0; padding: 0; 
+            display: flex; justify-content: center; align-items: center; min-height: 100vh;
+        }
+        .container { width: 90%; max-width: 400px; text-align: center; }
+        .page { display: none; }
         .active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        .box { background: #1e293b; padding: 20px; border-radius: 15px; margin: 15px 0; border: 1px solid #334155; text-align: center; }
-        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #475569; background: #0b0f19; color: #fff; box-sizing: border-box; }
-        .btn { background: #38bdf8; color: #0b0f19; padding: 15px; border-radius: 10px; font-weight: bold; width: 100%; border: none; cursor: pointer; }
-        h1, h2 { color: #38bdf8; }
-        .price-big { font-size: 30px; font-weight: bold; color: #22c55e; }
+        .card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: none; background: rgba(255,255,255,0.9); color: #000; box-sizing: border-box; }
+        .btn { background: #8b5cf6; color: #fff; padding: 15px; border-radius: 12px; border: none; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn:hover { background: #6d28d9; }
+        h1, h2 { color: #fff; margin-bottom: 20px; }
+        .price-box { background: #facc15; color: #000; padding: 15px; border-radius: 15px; margin: 10px 0; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- 1. صفحة الدخول (التحقق الإجباري) -->
-    <div id="p1" class="page active">
-        <h2 style="text-align: center; margin-top: 50px;">مرحباً بك في MarwanAlgo</h2>
-        <input type="text" id="user" placeholder="اسم المستخدم أو رقم الهاتف">
-        <input type="password" id="pass" placeholder="كلمة المرور">
-        <button class="btn" onclick="checkLogin()">دخول / إنشاء حساب</button>
+    <!-- 1. تسجيل الدخول -->
+    <div id="p1" class="page active card">
+        <h1>MarwanAlgo</h1>
+        <p>ابدأ رحلة التداول الاحترافية</p>
+        <input type="text" id="user" placeholder="اسم المستخدم">
+        <input type="password" placeholder="كلمة المرور">
+        <button class="btn" onclick="show('p2')">تسجيل الدخول</button>
+        <p style="margin-top:20px; font-size: 14px; cursor: pointer;" onclick="alert('قم بإنشاء حساب جديد أولاً عبر إدخال بياناتك!')">ليس لديك حساب؟ <u>إنشاء حساب جديد</u></p>
     </div>
 
-    <!-- 2. الصفحة الرئيسية (الترحيب + الاشتراكات) -->
-    <div id="p2" class="page">
-        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500" style="width:100%; border-radius:15px">
-        <h1>أهلاً بك يا بطل</h1>
-        <p>نحن نوفر لك أقوى خوارزميات التداول في العالم، دقة عالية، سرعة تنفيذ، وتحكم كامل في حسابك. نحن هنا لنغير مفهوم التداول التقليدي.</p>
-        
-        <div class="box" onclick="goToPay('أسبوعي', '$19')"><h3>الأسبوعي</h3><div class="price-big">$19</div></div>
-        <div class="box" onclick="goToPay('شهري', '$49')"><h3>الشهري</h3><div class="price-big">$49</div></div>
-        <div class="box" onclick="goToPay('سنوي', '$399')"><h3>السنوي</h3><div class="price-big">$399</div></div>
+    <!-- 2. الرئيسية -->
+    <div id="p2" class="page card">
+        <h2>اختر باقتك</h2>
+        <div class="price-box" onclick="goToPay('الأسبوعي', '$19')">الأسبوعي - $19</div>
+        <div class="price-box" onclick="goToPay('الشهري', '$49')">الشهري - $49</div>
+        <div class="price-box" onclick="goToPay('السنوي', '$399')">السنوي - $399</div>
     </div>
 
-    <!-- 3. صفحة الدفع -->
-    <div id="p3" class="page">
-        <h2>بيانات الاشتراك</h2>
-        <div class="box" style="border: 2px solid #22c55e;">
-            <p>حول المبلغ لفودافون كاش على:</p>
-            <h1 style="color:#fff">01028365021</h1>
-        </div>
-        <input type="text" id="firstName" placeholder="الاسم الأول فقط">
-        <input type="text" id="phoneNum" placeholder="رقم واتساب للتواصل">
+    <!-- 3. الدفع -->
+    <div id="p3" class="page card">
+        <h2 style="color: #facc15;">فودافون كاش: 01028365021</h2>
+        <p>قم بالتحويل ثم أكمل البيانات</p>
+        <input type="text" id="firstName" placeholder="الاسم الأول">
+        <input type="text" id="phoneNum" placeholder="رقم واتساب">
         <input type="text" id="mt5" placeholder="رقم حساب MT5">
-        <button class="btn" style="background:#22c55e" onclick="checkPay()">تأكيد التحويل</button>
+        <button class="btn" onclick="checkPay()">تأكيد التحويل</button>
     </div>
 
-    <!-- 4. صفحة التأكيد -->
-    <div id="p4" class="page">
-        <h2 style="color:#22c55e">طلبك قيد المراجعة</h2>
-        <p>مروان يراجع التحويل الآن... اضغط لإرسال الإيصال عبر الواتساب.</p>
-        <button class="btn" onclick="finalWhatsApp()">تواصل مع مروان</button>
+    <!-- 4. النهاية -->
+    <div id="p4" class="page card">
+        <h2 style="color:#22c55e">جاري المراجعة...</h2>
+        <p>سيقوم مروان بالتواصل معك عبر واتساب لتفعيل البوت فور التأكد من التحويل.</p>
+        <button class="btn" onclick="finalWhatsApp()">تواصل معي الآن</button>
     </div>
 </div>
 
 <script>
     let userData = {};
-    
-    function checkLogin() {
-        if(document.getElementById('user').value === "" || document.getElementById('pass').value === "") {
-            alert("يرجى إدخال البيانات أولاً!");
-        } else {
-            show('p2');
-        }
-    }
-
-    function goToPay(plan, price) {
-        userData.plan = plan + " " + price;
-        show('p3');
-    }
-
-    function checkPay() {
-        if(document.getElementById('firstName').value === "" || document.getElementById('phoneNum').value === "" || document.getElementById('mt5').value === "") {
-            alert("يجب ملء جميع البيانات لإتمام الطلب!");
-        } else {
-            show('p4');
-        }
-    }
-
     function show(id) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         document.getElementById(id).classList.add('active');
     }
-
+    function goToPay(p, pr) { userData.plan = p + " " + pr; show('p3'); }
+    function checkPay() {
+        if(document.getElementById('firstName').value === "") { alert("أدخل الاسم أولاً!"); return; }
+        show('p4');
+    }
     function finalWhatsApp() {
-        const msg = `طلب تفعيل ${userData.plan}%0aالاسم: ${document.getElementById('firstName').value}%0aالواتساب: ${document.getElementById('phoneNum').value}%0aMT5: ${document.getElementById('mt5').value}`;
+        const msg = `طلب تفعيل ${userData.plan}%0aالاسم: ${document.getElementById('firstName').value}`;
         window.open(`https://wa.me/201028365021?text=${msg}`, '_blank');
     }
 </script>
